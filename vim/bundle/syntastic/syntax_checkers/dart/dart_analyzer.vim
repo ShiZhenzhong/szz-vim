@@ -12,10 +12,21 @@ if !exists("g:syntastic_dart_analyzer_conf")
     let g:syntastic_dart_analyzer_conf = ''
 endif
 
-function! SyntaxCheckers_dart_GetLocList()
+function! SyntaxCheckers_dart_dart_analyser_IsAvailable()
+    return executable("dart_analyser")
+endif
+
+function! SyntaxCheckers_dart_dart_analyser_GetLocList()
     let args = !empty(g:syntastic_dart_analyzer_conf) ? ' ' . g:syntastic_dart_analyzer_conf : ''
-    let makeprg = 'dart_analyzer ' . shellescape(expand("%")) . args
+    let makeprg = syntastic#makeprg#build({
+                \ 'exe': 'dart_analyzer',
+                \ 'post_args': args,
+                \ 'subchecker': 'dart_analyser' })
 
     let errorformat = '%Efile:%f:%l:%c: %m'
     return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
 endfunction
+
+call g:SyntasticRegistry.CreateAndRegisterChecker({
+    \ 'filetype': 'dart',
+    \ 'name': 'dart_analyser'})
