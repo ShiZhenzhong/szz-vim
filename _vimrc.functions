@@ -1,0 +1,9 @@
+" Toggle rnu and nu
+function! NumberToggle()
+    if(&rnu == 1)
+        set nornu	    
+    else
+        set rnu
+    endif
+endfunc
+
