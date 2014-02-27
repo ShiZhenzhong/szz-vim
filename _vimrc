@@ -1,8 +1,8 @@
 " Basic configs
 
     " Load all customized functions {
-    if filereadable(expand("~/_vimrc.functions"))
-        so ~/_vimrc.functions
+    if filereadable(expand("~/.vimrc.util"))
+        so ~/.vimrc.util
     endif
     "}
 
@@ -12,8 +12,8 @@ filetype indent on
 
 set rnu " relative number help more
 set nu  " Display real line number for the current line
+set numberwidth=1
 set ai
-set background=light
 set mouse=a
 set mousehide "hide mouse cursor when typing
 set shm=flnrwxoOI
@@ -48,10 +48,19 @@ set scrolloff=3
 set listchars+=tab:>-,trail:^,extends:>,precedes:<
 set pastetoggle=<F12>
 
+
 scriptencoding utf-8
 syntax enable
 highlight clear SignColumn
 highlight clear LineNr
+
+if has('gui_running')
+    set background=light
+    set guioptions-=Tim
+
+else
+    set background=dark 
+endif
 
 if has('cmdline_info')
     set ru
@@ -69,6 +78,15 @@ if has('statusline')
     set statusline+=\ [%{getcwd()}]          " Current dir
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
+
+let mapleader=","
+
+"key mappings
+inoremap <leader>q <esc>
+inoremap <leader>c <esc>:
+inoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
+nnoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
+nnoremap <leader>clr :q<CR>
 
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
