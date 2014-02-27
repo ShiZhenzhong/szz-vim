@@ -46,6 +46,7 @@ set scrolljump=5
 set scrolloff=3
 
 set listchars+=tab:>-,trail:^,extends:>,precedes:<
+set pastetoggle=<F12>
 
 scriptencoding utf-8
 syntax enable
