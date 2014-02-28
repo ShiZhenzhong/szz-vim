@@ -140,31 +140,16 @@ if has('autocmd')
 endif "}
 
 " Plugins {
+filetype off                  " required
+filetype plugin indent on     " required
 set rtp+=$HOME/.vim/bundle/vundle
 call vundle#rc()
 
-" Plugins start here
-" let Vundle manage Vindle, required
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-rails.git'
 Bundle 'altercation/vim-colors-solarized'
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-set rtp+=~/_vim/vundle
-call vundle#rc()
-
-" let Vundle manage Vundle, required
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-rails.git'
-Bundle 'altercation/vim-colors-solarized'
-
-filetype plugin indent on     " required
 
 " color 
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
@@ -177,5 +162,4 @@ if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"
 else
     color desert
 endif
-
 "}
