@@ -1,9 +1,19 @@
 " Toggle rnu and nu
-function! NumberToggle()
+function! ToggleNumber()
     if(&rnu == 1)
         set nornu	    
+        set nonu
     else
+        set nu
         set rnu
+    endif
+endfunc
+
+function! ToggleFoldColumn()
+    if(&foldcolumn == 0)
+        set foldcolumn=4
+    else
+        set foldcolumn=0
     endif
 endfunc
 

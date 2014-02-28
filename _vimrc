@@ -1,11 +1,28 @@
-" Basic configs
+" Basic configs {
+silent function! WINDOWS()
+    return has('win16') || has('win32') || has('win64')
+endfunction
 
-    " Load all customized functions {
+silent function! LINUX()
+    return has('unix') || has('win32unix')
+endfunction
+"}
+
+" Load all customized functions {
+if LINUX()
     if filereadable(expand("~/.vimrc.util"))
         so ~/.vimrc.util
     endif
-    "}
+endif
 
+if WINDOWS()
+    if filereadable(expand("~/_vimrc.util"))
+        so ~/_vimrc.util
+    endif
+endif
+"}
+
+" General Settings {
 set nocompatible              " be iMproved, required
 filetype on                  " required
 filetype indent on
@@ -48,6 +65,9 @@ set scrolloff=3
 set listchars+=tab:>-,trail:^,extends:>,precedes:<
 set pastetoggle=<F12>
 
+set foldcolumn=4
+set foldmethod=indent
+set background=dark 
 
 scriptencoding utf-8
 syntax enable
@@ -55,16 +75,13 @@ highlight clear SignColumn
 highlight clear LineNr
 
 if has('gui_running')
-    set background=light
-    set guioptions-=Tim
-
-else
-    set background=dark 
+    set guioptions-=T
+    set guioptions-=m
 endif
 
 if has('cmdline_info')
     set ru
-    set ruf=%15(%c%V\ %p%%%)
+    set ruf=%15(%c%V\ %p%%%) " ruler format
     set showcmd
 endif
 
@@ -80,15 +97,50 @@ if has('statusline')
 endif
 
 let mapleader=","
+"}
 
-"key mappings
-inoremap <leader>q <esc>
-inoremap <leader>c <esc>:
+"key mappings {
+inoremap <leader>fj <esc>
+inoremap <C-s> <esc>:w<CR>a
+inoremap <C-e> <esc>$a
+inoremap <C-a> <esc>^i
+nnoremap ; :
+nnoremap <C-s> :w<CR>
 inoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
 nnoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
-nnoremap <leader>clr :q<CR>
+noremap j gj
+noremap k gk
+noremap Y y$
+nnoremap zl zL
+nnoremap zh zH
+noremap <leader><space> :noh<CR>
+noremap <C-j>j <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
+noremap <C-j><C-j> <esc>:res -10<CR>
+noremap <C-j><C-k> <esc>:res +10<CR>
+noremap <C-j><C-h> <esc>:vertical res -10<CR>
+noremap <C-j><C-l> <esc>:vertical res +10<CR>
+noremap <leader>w <C-w>
 
-set rtp+=~/.vim/bundle/vundle
+cmap cwd lcd %:p:h 
+"}
+
+" Abbreviations {
+iabbrev @@ messi.shizz@gmail.com
+"}
+
+" autocmd {
+if has('autocmd')
+    au FileType vim,javascript setlocal foldmethod=marker foldmarker={,}
+    au FileType python setlocal foldmethod=indent foldlevel=4
+    au BufEnter * silent! lcd %:p:h
+    "au BufWritePost $MYVIMRC so $MYVIMRC
+endif "}
+
+" Plugins {
+set rtp+=$HOME/.vim/bundle/vundle
 call vundle#rc()
 
 " Plugins start here
@@ -125,3 +177,5 @@ if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"
 else
     color desert
 endif
+
+"}
