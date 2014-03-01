@@ -67,7 +67,6 @@ set pastetoggle=<F12>
 
 set foldcolumn=4
 set foldmethod=indent
-set background=dark
 
 scriptencoding utf-8
 syntax enable
@@ -168,4 +167,5 @@ if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"
 else
     color desert
 endif
+set background=dark 
 "}
