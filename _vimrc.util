@@ -17,3 +17,25 @@ function! ToggleFoldColumn()
     endif
 endfunc
 
+" init backup directory
+function! InitDirectories()
+    let root_dir = $HOME . '/' . '.vim'
+    let dir_list = {'backup': 'backupdir', 'views': 'viewdir', 'swap': 'directory'}
+
+    for [dirname, setname] in items(dir_list)
+        let dir = root_dir . '/' . dirname . '/'
+        if exists("*mkdir")
+            if !isdirectory(dir)
+                call mkdir(dir)
+            endif
+        endif
+
+        if !isdirectory(dir)
+            echo "WARNING: Could not mkdir"
+        else
+            let dir = substitute(dir, " ", "\\\\ ", "g")
+            exec "set " . setname . "=" . dir
+        endif
+    endfor
+endfunction
+

@@ -96,10 +96,11 @@ if has('statusline')
 endif
 
 let mapleader=","
+call InitDirectories()
 "}
 
 "key mappings {
-inoremap <leader>fj <esc>
+inoremap <leader>q <esc>
 inoremap <C-s> <esc>:w<CR>a
 inoremap <C-e> <esc>$a
 inoremap <C-a> <esc>^i
