@@ -37,17 +37,17 @@ set shm=flnrwxoOI
 set vop=cursor,folds,unix,options
 set history=500
 set spell
-set hid  
+set hid
 set cursorline " highlight the current line
 set ve=onemore
 " Tab
 set expandtab
 set tabstop=8
-set shiftwidth=4 
+set shiftwidth=4
 set softtabstop=4
 set linespace=0
 
-set backspace=indent,eol,start 
+set backspace=indent,eol,start
 
 set showmatch
 set incsearch
@@ -67,7 +67,7 @@ set pastetoggle=<F12>
 
 set foldcolumn=4
 set foldmethod=indent
-set background=dark 
+set background=dark
 
 scriptencoding utf-8
 syntax enable
@@ -113,6 +113,7 @@ noremap k gk
 noremap Y y$
 nnoremap zl zL
 nnoremap zh zH
+nnoremap <leader><C-F> <esc>:%s/\s\+$//g<CR>
 noremap <leader><space> :noh<CR>
 noremap <C-j>j <C-w>j
 noremap <C-k> <C-w>k
@@ -124,7 +125,10 @@ noremap <C-j><C-h> <esc>:vertical res -10<CR>
 noremap <C-j><C-l> <esc>:vertical res +10<CR>
 noremap <leader>w <C-w>
 
-cmap cwd lcd %:p:h 
+vnoremap > >gv "keep selected area as it is
+vnoremap < <gv
+
+cmap cwd lcd %:p:h
 "}
 
 " Abbreviations {
@@ -136,6 +140,8 @@ if has('autocmd')
     au FileType vim,javascript setlocal foldmethod=marker foldmarker={,}
     au FileType python setlocal foldmethod=indent foldlevel=4
     au BufEnter * silent! lcd %:p:h
+    au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+    au InsertLeave * match ExtraWhitespace /\s\+$/
     "au BufWritePost $MYVIMRC so $MYVIMRC
 endif "}
 
@@ -151,7 +157,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-rails.git'
 Bundle 'altercation/vim-colors-solarized'
 
-" color 
+" color
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
     colorscheme solarized             " Load a colorscheme
     let g:solarized_termcolors=256
