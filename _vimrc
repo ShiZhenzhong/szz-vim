@@ -1,4 +1,4 @@
-" Basic configs {
+" Basic configs {{{
 silent function! WINDOWS()
     return has('win16') || has('win32') || has('win64')
 endfunction
@@ -6,9 +6,9 @@ endfunction
 silent function! LINUX()
     return has('unix') || has('win32unix')
 endfunction
-"}
+"}}}
 
-" Load all customized functions {
+" Load all customized functions {{{
 if LINUX()
     if filereadable(expand("~/.vimrc.util"))
         so ~/.vimrc.util
@@ -20,9 +20,9 @@ if WINDOWS()
         so ~/_vimrc.util
     endif
 endif
-"}
+"}}}
 
-" General Settings {
+" General Settings {{{
 set nocompatible              " be iMproved, required
 filetype on                  " required
 filetype indent on
@@ -65,9 +65,6 @@ set scrolloff=3
 set listchars+=tab:>-,trail:^,extends:>,precedes:<
 set pastetoggle=<F12>
 
-set foldcolumn=4
-set foldmethod=indent
-
 scriptencoding utf-8
 syntax enable
 highlight clear SignColumn
@@ -97,9 +94,9 @@ endif
 
 let mapleader=","
 call InitDirectories()
-"}
+"}}}
 
-"key mappings {
+"key mappings {{{
 inoremap <leader>q <esc>
 inoremap <C-s> <esc>:w<CR>a
 inoremap <C-e> <esc>$a
@@ -113,8 +110,9 @@ noremap k gk
 noremap Y y$
 nnoremap zl zL
 nnoremap zh zH
-nnoremap <leader><C-F> <esc>:%s/\s\+$//g<CR>
+nnoremap <S-space> <esc>:%s/\s\+$//g<CR>
 noremap <leader><space> :noh<CR>
+noremap <leader>so :so %<CR>
 noremap <C-j>j <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-h> <C-w>h
@@ -124,28 +122,30 @@ noremap <C-j><C-k> <esc>:res +10<CR>
 noremap <C-j><C-h> <esc>:vertical res -10<CR>
 noremap <C-j><C-l> <esc>:vertical res +10<CR>
 noremap <leader>w <C-w>
+noremap <A-n> :bn<CR>
+noremap <A-p> :bp<CR>
 
 vnoremap > >gv "keep selected area as it is
 vnoremap < <gv
 
 cmap cwd lcd %:p:h
-"}
+"}}}
 
-" Abbreviations {
+" Abbreviations {{{
 iabbrev @@ messi.shizz@gmail.com
-"}
+"}}}
 
-" autocmd {
+" autocmd {{{
 if has('autocmd')
-    au FileType vim,javascript setlocal foldmethod=marker foldmarker={,}
+    au FileType vim setlocal foldmethod=marker
     au FileType python setlocal foldmethod=indent foldlevel=4
     au BufEnter * silent! lcd %:p:h
     au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
     au InsertLeave * match ExtraWhitespace /\s\+$/
-    "au BufWritePost $MYVIMRC so $MYVIMRC
-endif "}
+    au InsertEnter * match ExtraWhitespace //
+endif "}}}
 
-" Plugins {
+" Plugins {{{
 filetype off                  " required
 filetype plugin indent on     " required
 set rtp+=$HOME/.vim/bundle/vundle
@@ -156,6 +156,10 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-rails.git'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'kien/ctrlp.vim'
+Bundle 'jlanzarotta/bufexplorer'
+Bundle 'marijnh/tern_for_vim'
 
 " color
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
@@ -168,5 +172,40 @@ if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"
 else
     color desert
 endif
-set background=dark 
-"}
+set background=dark
+
+" CtrlP
+nnoremap <leader>r :CtrlP<CR>
+nnoremap <leader>t :CtrlPTag<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_root_markers = ['.ctrlp'] " create a .ctrlp file at the root directory in big project. and remember add this file to .git_ignore
+let g:ctrlp_custom_ignore = {
+	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
+	\ 'file': '\v\.(exe|pyc|pdf|PDF|jar|chm|so|dll)$',
+	\ 'link': '',
+	\ }
+
+" Bufexplorer
+noremap <silent> <F9> :BufExplorer<CR>
+noremap <silent> <A-F9> :BufExplorerVerticalSplit<CR>
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerDisableDefaultKeyMapping=1    " Disable mapping.
+let g:bufExplorerDetailedHelp=0      " Do not show detailed help.
+let g:bufExplorerFindActive=1        " Go to active window.
+
+" use netrw
+map <silent> <C-E> :call ToggleVExplorer()<CR>
+" Hit enter in the file browser to open the selected
+" file with :vsplit to the right of the browser.
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+" Default to tree mode
+let g:netrw_liststyle=3
+" Change directory to the current buffer when opening files.
+set autochdir
+
+" tern for javascript
+let g:tern_map_keys=1
+let g:tern_show_argument_hints='on_hold'
+"}}}
