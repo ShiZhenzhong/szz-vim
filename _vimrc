@@ -206,6 +206,7 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'jcrocholl/pep8'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'majutsushi/tagbar'
 
 " color
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
@@ -236,6 +237,8 @@ map <silent> <C-E> :call ToggleVExplorer()<CR>
 " tern for javascript
 au FileType javascript noremap <C-CR> :TernDef<CR>
 au FileType javascript noremap <A-S-r> :TernRename<CR>
+
+nmap <F8> :TagbarToggle<CR>
 
 " Mappings
 "augroup codechecking_map
