@@ -134,10 +134,15 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': ['javascript', 'python'] }
+let g:used_javascript_libs = 'underscore,backbone,jquery'
+
+let g:snips_author='shizhz'
+let g:snips_email='messi.shizz@gmail.com'
+let g:snips_github='https://github.com/shizhz'
 "}}}
 
 "key mappings {{{
-inoremap <leader>q <esc>
+inoremap jk <esc>
 inoremap <C-s> <esc>:w<CR>
 inoremap <C-e> <esc>$a
 inoremap <C-a> <esc>^i
@@ -166,8 +171,9 @@ noremap <A-p> :bp<CR>
 vnoremap > >gv
 vnoremap < <gv
 
-
 cmap cwd lcd %:p:h
+cmap <C-a> <HOME>
+
 "}}}
 
 " Abbreviations {{{
@@ -199,15 +205,21 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'marijnh/tern_for_vim'
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 Bundle 'Shutnik/jshint2.vim'
 Bundle 'ervandew/supertab'
 " Bundle 'Shougo/neocomplete.vim'
 Bundle 'davidhalter/jedi-vim'
-Bundle 'jcrocholl/pep8'
+" Bundle 'jcrocholl/pep8'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'majutsushi/tagbar'
+Bundle 'othree/javascript-libraries-syntax.vim'
+" vim-snipmate
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
 
 " color
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
