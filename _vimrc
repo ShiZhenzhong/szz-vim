@@ -160,6 +160,7 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'marijnh/tern_for_vim'
+Bundle 'Valloric/YouCompleteMe'
 
 " color
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
