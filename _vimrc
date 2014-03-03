@@ -61,11 +61,15 @@ set whichwrap=b,s,h,l,<,>,[,]
 
 set scrolljump=5
 set scrolloff=3
+set autochdir
+set foldlevel=10
 
 set listchars+=tab:>-,trail:^,extends:>,precedes:<
 set pastetoggle=<F12>
+set completeopt=longest,menuone
 
 scriptencoding utf-8
+set encoding=utf-8
 syntax enable
 highlight clear SignColumn
 highlight clear LineNr
@@ -94,15 +98,50 @@ endif
 
 let mapleader=","
 call InitDirectories()
+
+"SuperTab
+let g:SuperTabDefaultCompletionType = "context"
+
+" jedi-vim
+let g:jedi#completions_command = "<C-N>"
+let g:jedi#goto_assignments_command = "<leader>jg"
+let g:jedi#goto_definitions_command = "<leader>jd"
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#rename_command = "<leader>jr"
+" let g:jedi#call_signature_escape = ' '
+
+let g:tern_map_keys=1
+let g:tern_show_argument_hints='on_hold'
+
+let g:ctrlp_root_markers = ['.ctrlp'] " create a .ctrlp file at the root directory in big project. and remember add this file to .git_ignore
+let g:ctrlp_custom_ignore = {
+	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
+	\ 'file': '\v\.(exe|pyc|pdf|PDF|jar|chm|so|dll)$',
+	\ 'link': '',
+	\ }
+
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_liststyle=3
+
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerDisableDefaultKeyMapping=1    " Disable mapping.
+let g:bufExplorerDetailedHelp=0      " Do not show detailed help.
+let g:bufExplorerFindActive=1        " Go to active window.
+
+
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'mode': 'passive',
+                           \ 'active_filetypes': [],
+                           \ 'passive_filetypes': ['javascript', 'python'] }
 "}}}
 
 "key mappings {{{
 inoremap <leader>q <esc>
-inoremap <C-s> <esc>:w<CR>a
+inoremap <C-s> <esc>:w<CR>
 inoremap <C-e> <esc>$a
 inoremap <C-a> <esc>^i
 nnoremap ; :
-nnoremap <C-s> :w<CR>
 inoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
 nnoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
 noremap j gj
@@ -110,23 +149,23 @@ noremap k gk
 noremap Y y$
 nnoremap zl zL
 nnoremap zh zH
-nnoremap <S-space> <esc>:%s/\s\+$//g<CR>
+nnoremap <S-space> <esc>mi:%s/\s\+$//g<CR>`i
 noremap <leader><space> :noh<CR>
 noremap <leader>so :so %<CR>
-noremap <C-j>j <C-w>j
+noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
-noremap <C-j><C-j> <esc>:res -10<CR>
-noremap <C-j><C-k> <esc>:res +10<CR>
-noremap <C-j><C-h> <esc>:vertical res -10<CR>
-noremap <C-j><C-l> <esc>:vertical res +10<CR>
+noremap <A-j> <esc>:res -10<CR>
+noremap <A-k> <esc>:res +10<CR>
+noremap <A-h> <esc>:vertical res -10<CR>
+noremap <A-l> <esc>:vertical res +10<CR>
 noremap <leader>w <C-w>
 noremap <A-n> :bn<CR>
 noremap <A-p> :bp<CR>
-
-vnoremap > >gv "keep selected area as it is
+vnoremap > >gv
 vnoremap < <gv
+
 
 cmap cwd lcd %:p:h
 "}}}
@@ -160,6 +199,13 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'marijnh/tern_for_vim'
+Bundle 'Shutnik/jshint2.vim'
+Bundle 'ervandew/supertab'
+" Bundle 'Shougo/neocomplete.vim'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'jcrocholl/pep8'
+Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdcommenter'
 
 " color
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
@@ -168,6 +214,7 @@ if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"
     let g:solarized_termtrans=1
     let g:solarized_contrast="normal"
     let g:solarized_visibility="normal"
+    let g:solarized_italic = 0
     let g:solarized_menu=0
 else
     color desert
@@ -178,34 +225,29 @@ set background=dark
 nnoremap <leader>r :CtrlP<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
-"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_root_markers = ['.ctrlp'] " create a .ctrlp file at the root directory in big project. and remember add this file to .git_ignore
-let g:ctrlp_custom_ignore = {
-	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
-	\ 'file': '\v\.(exe|pyc|pdf|PDF|jar|chm|so|dll)$',
-	\ 'link': '',
-	\ }
 
 " Bufexplorer
 noremap <silent> <F9> :BufExplorer<CR>
 noremap <silent> <A-F9> :BufExplorerVerticalSplit<CR>
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerDisableDefaultKeyMapping=1    " Disable mapping.
-let g:bufExplorerDetailedHelp=0      " Do not show detailed help.
-let g:bufExplorerFindActive=1        " Go to active window.
 
 " use netrw
 map <silent> <C-E> :call ToggleVExplorer()<CR>
-" Hit enter in the file browser to open the selected
-" file with :vsplit to the right of the browser.
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-" Default to tree mode
-let g:netrw_liststyle=3
-" Change directory to the current buffer when opening files.
-set autochdir
 
 " tern for javascript
-let g:tern_map_keys=1
-let g:tern_show_argument_hints='on_hold'
+au FileType javascript noremap <C-CR> :TernDef<CR>
+au FileType javascript noremap <A-S-r> :TernRename<CR>
+
+" Mappings
+"augroup codechecking_map
+    "au!
+    "au FileType python,javascript nnoremap  <silent><F1> :SyntasticCheck<CR>
+    "au FileType python,javascript inoremap  <silent><F1> <C-O>:SyntasticCheck<CR>
+    "au FileType python,javascript vnoremap  <silent><F1> :SyntasticCheck<CR>
+    "au FileType python,javascript nnoremap  <silent><F2> :lnext<CR>
+    "au FileType python,javascript inoremap  <silent><F2> <C-O>:lnext<CR>
+    "au FileType python,javascript vnoremap  <silent><F2> :lnext<CR>
+    "au FileType python,javascript nnoremap  <silent><F3> :lprevious<CR>
+    "au FileType python,javascript inoremap  <silent><F3> <C-O>:lprevious<CR>
+    "au FileType python,javascript vnoremap  <silent><F3> :lprevious<CR>
+"augroup END
 "}}}
