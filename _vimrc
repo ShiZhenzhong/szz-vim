@@ -61,7 +61,6 @@ set whichwrap=b,s,h,l,<,>,[,]
 
 set scrolljump=5
 set scrolloff=3
-set autochdir
 set foldlevel=10
 
 set listchars+=tab:>-,trail:^,extends:>,precedes:<
@@ -100,7 +99,7 @@ let mapleader=","
 call InitDirectories()
 
 "SuperTab
-let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabDefaultCompletionType = "context"
 
 " jedi-vim
 let g:jedi#completions_command = "<C-N>"
@@ -134,6 +133,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': ['javascript', 'python'] }
+
 let g:used_javascript_libs = 'underscore,backbone,jquery'
 
 let g:snips_author='shizhz'
@@ -173,7 +173,6 @@ vnoremap < <gv
 
 cmap cwd lcd %:p:h
 cmap <C-a> <HOME>
-
 "}}}
 
 " Abbreviations {{{
@@ -207,13 +206,12 @@ Bundle 'jlanzarotta/bufexplorer'
 Bundle 'marijnh/tern_for_vim'
 " Bundle 'Valloric/YouCompleteMe'
 Bundle 'Shutnik/jshint2.vim'
-Bundle 'ervandew/supertab'
+"Bundle 'ervandew/supertab'
 " Bundle 'Shougo/neocomplete.vim'
 Bundle 'davidhalter/jedi-vim'
-" Bundle 'jcrocholl/pep8'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'majutsushi/tagbar'
+"Bundle 'majutsushi/tagbar'
 Bundle 'othree/javascript-libraries-syntax.vim'
 " vim-snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
