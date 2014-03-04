@@ -149,14 +149,13 @@ inoremap <C-a> <esc>^i
 nnoremap ; :
 inoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
 nnoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
-noremap j gj
-noremap k gk
+"noremap j gj
+"noremap k gk
 noremap Y y$
 nnoremap zl zL
 nnoremap zh zH
 nnoremap <S-space> <esc>mi:%s/\s\+$//g<CR>`i
 noremap <leader><space> :noh<CR>
-noremap <leader>so :so %<CR>
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-h> <C-w>h
@@ -182,6 +181,7 @@ iabbrev @@ messi.shizz@gmail.com
 " autocmd {{{
 if has('autocmd')
     au FileType vim setlocal foldmethod=marker
+    au FileType vim noremap <leader>so :so %<CR>
     au FileType python setlocal foldmethod=indent foldlevel=4
     au BufEnter * silent! lcd %:p:h
     au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
