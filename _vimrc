@@ -139,6 +139,8 @@ let g:used_javascript_libs = 'underscore,backbone,jquery'
 let g:snips_author='shizhz'
 let g:snips_email='messi.shizz@gmail.com'
 let g:snips_github='https://github.com/shizhz'
+
+let g:use_jedi_for_javascript=1
 "}}}
 
 "key mappings {{{
@@ -170,6 +172,11 @@ noremap <A-p> :bp<CR>
 vnoremap > >gv
 vnoremap < <gv
 
+"Gundo
+nnoremap <F5> :GundoToggle<CR>
+let g:gundo_width = 50
+let g:gundo_preview_height = 40
+
 cmap cwd lcd %:p:h
 cmap <C-a> <HOME>
 "}}}
@@ -182,7 +189,20 @@ iabbrev @@ messi.shizz@gmail.com
 if has('autocmd')
     au FileType vim setlocal foldmethod=marker
     au FileType vim noremap <leader>so :so %<CR>
+
     au FileType python setlocal foldmethod=indent foldlevel=4
+
+    " Use jedi's trigger method
+    au FileType javascript inoremap <silent> <buffer> . .<C-R>=jedi#complete_string(1)<CR>
+    au FileType javascript call ReadJediConfigForJS()
+    au FileType javascript inoremap <expr> <buffer> <C-n> jedi#complete_string(0)
+    au FileType javascript nnoremap <silent> <buffer> K <esc>:TernDoc<CR>
+    " close any preview windows
+    au FileType javascript nnoremap <silent> <buffer> <esc> <C-W>z
+
+    au FileType css imap <C-n> <C-x><C-o>
+
+    au InsertLeave <buffer> if pumvisible() == 0|pclose|endif
     au BufEnter * silent! lcd %:p:h
     au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
     au InsertLeave * match ExtraWhitespace /\s\+$/
@@ -218,6 +238,8 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
+
+Bundle "sjl/gundo.vim"
 
 " color
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
