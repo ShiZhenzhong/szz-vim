@@ -179,6 +179,16 @@ let g:gundo_preview_height = 40
 
 cmap cwd lcd %:p:h
 cmap <C-a> <HOME>
+
+
+let g:user_emmet_install_global = 0
+let g:user_emmet_leader_key='<C-n>'
+let g:user_emmet_mode='a'    "enable all function in all mode.
+let g:use_emmet_complete_tag = 1
+
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_space_jump_first = 1
+let g:EasyMotion_disable_two_key_combo = 0
 "}}}
 
 " Abbreviations {{{
@@ -201,6 +211,7 @@ if has('autocmd')
     au FileType javascript nnoremap <silent> <buffer> <esc> <C-W>z
 
     au FileType css imap <C-n> <C-x><C-o>
+    au FileType html,css EmmetInstall
 
     au InsertLeave <buffer> if pumvisible() == 0|pclose|endif
     au BufEnter * silent! lcd %:p:h
@@ -271,6 +282,6 @@ noremap <silent> <A-F9> :BufExplorerVerticalSplit<CR>
 " use netrw
 map <silent> <C-E> :call ToggleVExplorer()<CR>
 
-" tern for javascript
-" au FileType javascript noremap <C-CR> :TernDef<CR>
-" au FileType javascript noremap <A-S-r> :TernRename<CR>
+map \ <Plug>(easymotion-prefix)
+map \\s <Plug>(easymotion-s2)
+map \g <Plug>(easymotion-sn)

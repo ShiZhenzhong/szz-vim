@@ -8,4 +8,5 @@ szz-vim
 3. cp _vimrc $HOME/.vimrc
 4. cp _vimrc.util $HOME/.vimrc.util
 5. Launch vim and run ```:BundleInstall```
-6. Done:)
+6. Install jedi for jedi-vim, tern for tern-vim and flake8 for python code checking.
+7. Done:)
