@@ -215,31 +215,35 @@ filetype plugin indent on     " required
 set rtp+=$HOME/.vim/bundle/vundle
 call vundle#rc()
 
+" Bundle 'tpope/vim-rails.git'
+" Bundle 'Valloric/YouCompleteMe'
+" Bundle 'ervandew/supertab'
+" Bundle 'Shougo/neocomplete.vim'
+" Bundle 'majutsushi/tagbar'
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-rails.git'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'marijnh/tern_for_vim'
-" Bundle 'Valloric/YouCompleteMe'
 Bundle 'Shutnik/jshint2.vim'
-"Bundle 'ervandew/supertab'
-" Bundle 'Shougo/neocomplete.vim'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
-"Bundle 'majutsushi/tagbar'
 Bundle 'othree/javascript-libraries-syntax.vim'
 " vim-snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
-
 Bundle "sjl/gundo.vim"
+Bundle "rstacruz/sparkup"
+Bundle "mattn/emmet-vim"
+Bundle "tpope/vim-surround"
+Bundle "tpope/vim-repeat"
+Bundle "skammer/vim-css-color"
 
 " color
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
@@ -268,22 +272,5 @@ noremap <silent> <A-F9> :BufExplorerVerticalSplit<CR>
 map <silent> <C-E> :call ToggleVExplorer()<CR>
 
 " tern for javascript
-au FileType javascript noremap <C-CR> :TernDef<CR>
-au FileType javascript noremap <A-S-r> :TernRename<CR>
-
-nmap <F8> :TagbarToggle<CR>
-
-" Mappings
-"augroup codechecking_map
-    "au!
-    "au FileType python,javascript nnoremap  <silent><F1> :SyntasticCheck<CR>
-    "au FileType python,javascript inoremap  <silent><F1> <C-O>:SyntasticCheck<CR>
-    "au FileType python,javascript vnoremap  <silent><F1> :SyntasticCheck<CR>
-    "au FileType python,javascript nnoremap  <silent><F2> :lnext<CR>
-    "au FileType python,javascript inoremap  <silent><F2> <C-O>:lnext<CR>
-    "au FileType python,javascript vnoremap  <silent><F2> :lnext<CR>
-    "au FileType python,javascript nnoremap  <silent><F3> :lprevious<CR>
-    "au FileType python,javascript inoremap  <silent><F3> <C-O>:lprevious<CR>
-    "au FileType python,javascript vnoremap  <silent><F3> :lprevious<CR>
-"augroup END
-"}}}
+" au FileType javascript noremap <C-CR> :TernDef<CR>
+" au FileType javascript noremap <A-S-r> :TernRename<CR>
