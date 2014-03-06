@@ -27,6 +27,10 @@ set nocompatible              " be iMproved, required
 filetype on                  " required
 filetype indent on
 
+set gcr=a:blinkon0
+set visualbell
+set smarttab
+
 set rnu " relative number help more
 set nu  " Display real line number for the current line
 set numberwidth=1
@@ -56,7 +60,7 @@ set ignorecase
 set smartcase
 
 set wildmenu " show alternative list
-set wildmode=full
+set wildmode=longest,list,full
 set whichwrap=b,s,h,l,<,>,[,]
 
 set scrolljump=5
@@ -107,7 +111,6 @@ let g:jedi#goto_assignments_command = "<leader>jg"
 let g:jedi#goto_definitions_command = "<leader>jd"
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#rename_command = "<leader>jr"
-" let g:jedi#call_signature_escape = ' '
 
 let g:tern_map_keys=1
 let g:tern_show_argument_hints='on_hold'
@@ -141,9 +144,12 @@ let g:snips_email='messi.shizz@gmail.com'
 let g:snips_github='https://github.com/shizhz'
 
 let g:use_jedi_for_javascript=1
+
 "}}}
 
-"key mappings {{{
+"Akey mappings {{{
+inoremap <F3> <C-o>:call ToggleNumber()<CR>
+nnoremap <F3> :call ToggleNumber()<CR>
 inoremap jk <esc>
 inoremap <C-s> <esc>:w<CR>
 inoremap <C-e> <esc>$a
@@ -151,8 +157,6 @@ inoremap <C-a> <esc>^i
 nnoremap ; :
 inoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
 nnoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
-"noremap j gj
-"noremap k gk
 noremap Y y$
 nnoremap zl zL
 nnoremap zh zH
@@ -172,6 +176,7 @@ noremap <A-p> :bp<CR>
 vnoremap > >gv
 vnoremap < <gv
 
+
 "Gundo
 nnoremap <F5> :GundoToggle<CR>
 let g:gundo_width = 50
@@ -183,12 +188,13 @@ cmap <C-a> <HOME>
 
 let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key='<C-n>'
-let g:user_emmet_mode='a'    "enable all function in all mode.
+let g:user_emmet_mode='a'   
 let g:use_emmet_complete_tag = 1
 
 let g:EasyMotion_enter_jump_first = 1
 let g:EasyMotion_space_jump_first = 1
 let g:EasyMotion_disable_two_key_combo = 0
+
 "}}}
 
 " Abbreviations {{{
@@ -249,12 +255,13 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
+
 Bundle "sjl/gundo.vim"
-Bundle "rstacruz/sparkup"
 Bundle "mattn/emmet-vim"
 Bundle "tpope/vim-surround"
 Bundle "tpope/vim-repeat"
 Bundle "skammer/vim-css-color"
+Bundle "jiangmiao/auto-pairs"
 
 " color
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
@@ -276,8 +283,8 @@ nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 
 " Bufexplorer
-noremap <silent> <F9> :BufExplorer<CR>
-noremap <silent> <A-F9> :BufExplorerVerticalSplit<CR>
+noremap <silent> <leader>ll :BufExplorer<CR>
+noremap <silent> <leader>lb :BufExplorerVerticalSplit<CR>
 
 " use netrw
 map <silent> <C-E> :call ToggleVExplorer()<CR>

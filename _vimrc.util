@@ -62,8 +62,18 @@ endfunction
 function! ReadJediConfigForJS()
     if g:use_jedi_for_javascript == 1
        let jedi_vim = "~/.vim/bundle/jedi-vim/ftplugin/python/jedi.vim"
-       if filereadable(expand(jedi_vim)) 
-           exec ":so " . jedi_vim 
+       if filereadable(expand(jedi_vim))
+           exec ":so " . jedi_vim
        endif
     endif
 endfunction
+
+function! CustomizeCR()
+    if pumvisible()
+        return "\<C-y>"
+    else
+        return "\<CR>"
+    endif
+endfunction
+
+
