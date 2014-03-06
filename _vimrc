@@ -27,7 +27,6 @@ set nocompatible              " be iMproved, required
 filetype on                  " required
 filetype indent on
 
-set gcr=a:blinkon0
 set visualbell
 set smarttab
 
@@ -144,11 +143,10 @@ let g:snips_email='messi.shizz@gmail.com'
 let g:snips_github='https://github.com/shizhz'
 
 let g:use_jedi_for_javascript=1
+
 "}}}
 
 "Akey mappings {{{
-inoremap <F3> <C-o>:call ToggleNumber()<CR>
-nnoremap <F3> :call ToggleNumber()<CR>
 inoremap jk <esc>
 inoremap <C-s> <esc>:w<CR>
 inoremap <C-e> <esc>$a
@@ -174,7 +172,6 @@ noremap <A-n> :bn<CR>
 noremap <A-p> :bp<CR>
 vnoremap > >gv
 vnoremap < <gv
-
 
 "Gundo
 nnoremap <F5> :GundoToggle<CR>
@@ -234,7 +231,6 @@ call vundle#rc()
 " Bundle 'tpope/vim-rails.git'
 " Bundle 'Valloric/YouCompleteMe'
 " Bundle 'ervandew/supertab'
-" Bundle 'Shougo/neocomplete.vim'
 " Bundle 'majutsushi/tagbar'
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
@@ -261,6 +257,8 @@ Bundle "tpope/vim-surround"
 Bundle "tpope/vim-repeat"
 Bundle "skammer/vim-css-color"
 Bundle "jiangmiao/auto-pairs"
+Bundle 'Shougo/neocomplete.vim'
+
 
 " color
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
@@ -291,3 +289,5 @@ map <silent> <C-E> :call ToggleVExplorer()<CR>
 map \ <Plug>(easymotion-prefix)
 map \\s <Plug>(easymotion-s2)
 map \g <Plug>(easymotion-sn)
+
+imap <CR>   <C-R>=CustomizeCR()<CR>
