@@ -144,7 +144,6 @@ let g:snips_email='messi.shizz@gmail.com'
 let g:snips_github='https://github.com/shizhz'
 
 let g:use_jedi_for_javascript=1
-
 "}}}
 
 "Akey mappings {{{
