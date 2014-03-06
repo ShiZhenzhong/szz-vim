@@ -142,7 +142,7 @@ let g:snips_author='shizhz'
 let g:snips_email='messi.shizz@gmail.com'
 let g:snips_github='https://github.com/shizhz'
 
-let g:use_jedi_for_javascript=1
+let g:use_jedi_for_javascript=0
 
 "}}}
 
@@ -205,9 +205,9 @@ if has('autocmd')
     au FileType python setlocal foldmethod=indent foldlevel=4
 
     " Use jedi's trigger method
-    au FileType javascript inoremap <silent> <buffer> . .<C-R>=jedi#complete_string(1)<CR>
+    "au FileType javascript inoremap <silent> <buffer> . .<C-R>=jedi#complete_string(1)<CR>
     au FileType javascript call ReadJediConfigForJS()
-    au FileType javascript inoremap <expr> <buffer> <C-n> jedi#complete_string(0)
+    "au FileType javascript inoremap <expr> <buffer> <C-n> jedi#complete_string(0)
     au FileType javascript nnoremap <silent> <buffer> K <esc>:TernDoc<CR>
     " close any preview windows
     au FileType javascript nnoremap <silent> <buffer> <esc> <C-W>z
@@ -257,7 +257,7 @@ Bundle "tpope/vim-surround"
 Bundle "tpope/vim-repeat"
 Bundle "skammer/vim-css-color"
 Bundle "jiangmiao/auto-pairs"
-Bundle 'Shougo/neocomplete.vim'
+ Bundle 'Shougo/neocomplete.vim'
 
 
 " color
