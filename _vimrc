@@ -13,11 +13,18 @@ if LINUX()
     if filereadable(expand("~/.vimrc.util"))
         so ~/.vimrc.util
     endif
+    if filereadable(expand("/usr/share/dict/words"))
+        set dictionary = "/usr/share/dict/words"
+    endif
 endif
+
 
 if WINDOWS()
     if filereadable(expand("~/_vimrc.util"))
         so ~/_vimrc.util
+    endif
+    if filereadable(expand("~/words"))
+        set dictionary = "~/words"
     endif
 endif
 "}}}
@@ -36,7 +43,7 @@ set numberwidth=1
 set ai
 set mouse=a
 set mousehide "hide mouse cursor when typing
-set shm=flnrwxoOI
+set shortmess=flnrwxoOI
 set vop=cursor,folds,unix,options
 set history=500
 set spell
@@ -58,8 +65,8 @@ set hlsearch
 set ignorecase
 set smartcase
 
-set wildmenu " show alternative list
-set wildmode=longest,list,full
+set wildmenu 
+set wildmode=list:longest
 set whichwrap=b,s,h,l,<,>,[,]
 
 set scrolljump=5
@@ -110,6 +117,8 @@ let g:jedi#goto_assignments_command = "<leader>jg"
 let g:jedi#goto_definitions_command = "<leader>jd"
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#rename_command = "<leader>jr"
+let g:jedi#popup_select_first = 0
+let g:use_jedi_for_javascript=1
 
 let g:tern_map_keys=1
 let g:tern_show_argument_hints='on_hold'
@@ -142,7 +151,6 @@ let g:snips_author='shizhz'
 let g:snips_email='messi.shizz@gmail.com'
 let g:snips_github='https://github.com/shizhz'
 
-let g:use_jedi_for_javascript=0
 
 "}}}
 
@@ -191,6 +199,35 @@ let g:EasyMotion_enter_jump_first = 1
 let g:EasyMotion_space_jump_first = 1
 let g:EasyMotion_disable_two_key_combo = 0
 
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_camel_case = 1
+let g:neocomplete#enable_auto_delimiter = 1
+let g:neocomplete#enable_refresh_always = 1
+let g:neocomplete#data_directory = "~/.vim/.cache/neocomplete"
+let g:neocomplete#enable_insert_char_pre = 1
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neocomplete#enable_auto_select = 0
+
+"" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+"" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
 "}}}
 
 " Abbreviations {{{
@@ -205,12 +242,13 @@ if has('autocmd')
     au FileType python setlocal foldmethod=indent foldlevel=4
 
     " Use jedi's trigger method
-    "au FileType javascript inoremap <silent> <buffer> . .<C-R>=jedi#complete_string(1)<CR>
+    au FileType javascript inoremap <silent> <buffer> . .<C-R>=jedi#complete_string(1)<CR>
     au FileType javascript call ReadJediConfigForJS()
-    "au FileType javascript inoremap <expr> <buffer> <C-n> jedi#complete_string(0)
+    au FileType javascript inoremap <expr> <buffer> <C-n> jedi#complete_string(0)
     au FileType javascript nnoremap <silent> <buffer> K <esc>:TernDoc<CR>
     " close any preview windows
     au FileType javascript nnoremap <silent> <buffer> <esc> <C-W>z
+    autocmd FileType vim set keywordprg=":help"
 
     au FileType css imap <C-n> <C-x><C-o>
     au FileType html,css EmmetInstall
@@ -256,8 +294,9 @@ Bundle "mattn/emmet-vim"
 Bundle "tpope/vim-surround"
 Bundle "tpope/vim-repeat"
 Bundle "skammer/vim-css-color"
-Bundle "jiangmiao/auto-pairs"
- Bundle 'Shougo/neocomplete.vim'
+Bundle "shizhz/auto-pairs"
+Bundle 'Shougo/neocomplete.vim'
+Bundle "Shougo/neosnippet.vim"
 
 
 " color
