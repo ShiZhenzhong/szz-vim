@@ -66,6 +66,7 @@ set ignorecase
 set smartcase
 
 set wildmenu 
+"set wildignorecase
 set wildmode=list:longest
 set whichwrap=b,s,h,l,<,>,[,]
 
@@ -223,6 +224,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: "\<TAB>"
 
+" fugitive
+nnoremap <leader>gs  :Gstatus<CR>
+
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
@@ -271,6 +275,7 @@ call vundle#rc()
 " Bundle 'ervandew/supertab'
 " Bundle 'majutsushi/tagbar'
 Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'altercation/vim-colors-solarized'
@@ -323,7 +328,7 @@ noremap <silent> <leader>ll :BufExplorer<CR>
 noremap <silent> <leader>lb :BufExplorerVerticalSplit<CR>
 
 " use netrw
-map <silent> <C-E> :call ToggleVExplorer()<CR>
+map <silent> <C-E> :NERDTreeToggle<CR>
 
 map \ <Plug>(easymotion-prefix)
 map \\s <Plug>(easymotion-s2)
