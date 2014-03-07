@@ -65,9 +65,9 @@ set hlsearch
 set ignorecase
 set smartcase
 
-set wildmenu 
 "set wildignorecase
-set wildmode=list:longest
+set wildmode=longest,list,full
+set wildmenu 
 set whichwrap=b,s,h,l,<,>,[,]
 
 set scrolljump=5
@@ -159,8 +159,8 @@ let g:snips_github='https://github.com/shizhz'
 "Akey mappings {{{
 inoremap jk <esc>
 inoremap <C-s> <esc>:w<CR>
-inoremap <C-e> <esc>$a
-inoremap <C-a> <esc>^i
+"inoremap <C-e> <esc>$a
+"inoremap <C-a> <esc>^i
 nnoremap ; :
 inoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
 nnoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
