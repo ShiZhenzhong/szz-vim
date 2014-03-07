@@ -98,7 +98,8 @@ endif
 if has('statusline')
     set laststatus=2   " make statusline always shown
 
-    set statusline=%<%f\                     " Filename
+    set statusline=%<%f\:                    " Filename
+    set statusline+=%-5.3n\                 " buffer number  
     set statusline+=%w%h%m%r                 " Options
     set statusline+=%{fugitive#statusline()} " Git Hotness
     set statusline+=\ [%{&ff}/%Y]            " Filetype
@@ -327,7 +328,7 @@ nnoremap <leader>b :CtrlPBuffer<CR>
 noremap <silent> <leader>ll :BufExplorer<CR>
 noremap <silent> <leader>lb :BufExplorerVerticalSplit<CR>
 
-" use netrw
+" neartree
 map <silent> <C-E> :NERDTreeToggle<CR>
 
 map \ <Plug>(easymotion-prefix)
