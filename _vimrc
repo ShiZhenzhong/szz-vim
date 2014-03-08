@@ -205,6 +205,7 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_camel_case = 1
 let g:neocomplete#enable_auto_delimiter = 1
+let g:neocomplete#enable_auto_select = 0
 let g:neocomplete#enable_refresh_always = 1
 let g:neocomplete#data_directory = "~/.vim/.cache/neocomplete"
 let g:neocomplete#enable_insert_char_pre = 1
