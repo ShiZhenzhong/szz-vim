@@ -43,7 +43,7 @@ set numberwidth=1
 set ai
 set mouse=a
 set mousehide "hide mouse cursor when typing
-set shortmess=flnrwxoOI
+set shortmess=flnrwxoO
 set vop=cursor,folds,unix,options
 set history=500
 set spell
