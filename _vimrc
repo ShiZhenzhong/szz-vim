@@ -109,6 +109,43 @@ endif
 let mapleader=","
 call InitDirectories()
 
+"}}}
+
+"Akey mappings {{{
+inoremap jk <esc>
+inoremap <C-s> <esc>:w<CR>
+"inoremap <C-e> <esc>$a
+"inoremap <C-a> <esc>^i
+nnoremap ; :
+inoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
+nnoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
+noremap Y y$
+nnoremap zl zL
+nnoremap zh zH
+nnoremap <S-space> <esc>mi:%s/\s\+$//g<CR>`i
+noremap <leader><space> :noh<CR>
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
+noremap <A-j> <esc>:res -10<CR>
+noremap <A-k> <esc>:res +10<CR>
+noremap <A-h> <esc>:vertical res -10<CR>
+noremap <A-l> <esc>:vertical res +10<CR>
+noremap <leader>w <C-w>
+noremap <A-n> :bn<CR>
+noremap <A-p> :bp<CR>
+vnoremap > >gv
+vnoremap < <gv
+
+"Gundo
+nnoremap <F5> :GundoToggle<CR>
+let g:gundo_width = 50
+let g:gundo_preview_height = 40
+
+cmap cwd lcd %:p:h
+cmap <C-a> <HOME>
+
 "SuperTab
 "let g:SuperTabDefaultCompletionType = "context"
 
