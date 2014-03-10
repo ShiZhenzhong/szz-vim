@@ -117,6 +117,7 @@ inoremap <C-s> <esc>:w<CR>
 "inoremap <C-e> <esc>$a
 "inoremap <C-a> <esc>^i
 nnoremap ; :
+nnoremap <Leader>fs :set guifont=*<CR>
 inoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
 nnoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
 noremap Y y$
