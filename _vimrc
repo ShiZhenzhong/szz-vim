@@ -18,7 +18,6 @@ if LINUX()
     endif
 endif
 
-
 if WINDOWS()
     if filereadable(expand("~/_vimrc.util"))
         so ~/_vimrc.util
@@ -114,6 +113,8 @@ call InitDirectories()
 "let g:SuperTabDefaultCompletionType = "context"
 
 " jedi-vim
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 1
 let g:jedi#completions_command = "<C-N>"
 let g:jedi#goto_assignments_command = "<leader>jg"
@@ -121,7 +122,6 @@ let g:jedi#goto_definitions_command = "<leader>jd"
 let g:jedi#rename_command = "<leader>jr"
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#popup_select_first = 0
-let g:jedi#auto_vim_configuration = 0
 let g:use_jedi_for_javascript=0
 
 let g:tern_map_keys=1
@@ -202,7 +202,7 @@ let g:EasyMotion_enter_jump_first = 1
 let g:EasyMotion_space_jump_first = 1
 let g:EasyMotion_disable_two_key_combo = 0
 
-let g:neocomplete#enable_at_startup = 0
+let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_camel_case = 1
 let g:neocomplete#disable_auto_complete = 0
@@ -214,13 +214,15 @@ let g:neocomplete#data_directory = "~/.vim/.cache/neocomplete"
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+
 "" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " fugitive
 nnoremap <leader>gs  :Gstatus<CR>
@@ -242,11 +244,12 @@ if has('autocmd')
     au FileType vim noremap <leader>so :so %<CR>
 
     au FileType python setlocal foldmethod=indent foldlevel=4
+    au FileType python setlocal omnifunc=jedi#completions
 
     " Use jedi's trigger method
     "au FileType javascript inoremap <silent> <buffer> . .<C-R>=jedi#complete_string(1)<CR>
-    au FileType javascript call ReadJediConfigForJS()
     "au FileType javascript inoremap <expr> <buffer> <C-n> jedi#complete_string(0)
+    au FileType javascript call ReadJediConfigForJS()
     au FileType javascript nnoremap <silent> <buffer> K <esc>:TernDoc<CR>
     " close any preview windows
     au FileType javascript nnoremap <silent> <buffer> <esc> <C-W>z
