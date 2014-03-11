@@ -153,6 +153,9 @@ cmap <C-a> <HOME>
 "SuperTab
 "let g:SuperTabDefaultCompletionType = "context"
 
+"Session management
+let g:session_directory = "$HOME/.vim/session"
+
 " jedi-vim
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
@@ -166,7 +169,7 @@ let g:jedi#popup_select_first = 0
 let g:use_jedi_for_javascript=0
 
 let g:tern_map_keys=1
-let g:tern_show_argument_hints='on_hold'
+let g:tern_show_argument_hints='no'
 
 let g:ctrlp_root_markers = ['.ctrlp'] " create a .ctrlp file at the root directory in big project. and remember add this file to .git_ignore
 let g:ctrlp_custom_ignore = {
@@ -347,6 +350,8 @@ Bundle "Shougo/neosnippet.vim"
 "Gist
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-session'
 
 
 " color

@@ -1,5 +1,7 @@
 """
 1. Meta-Introduction
+    - Why we are here and 
+    - What we are going to talk about
 
 2. Introduction
     - ♀  (vi) χ  ♂ (Bram Moolenaar) →   Vi Improved
@@ -36,6 +38,7 @@
 
 4. Handy Functions in Packet
     - Basic text handling:
+        - colorful: colorscheme
         - search: /
         - substitute: :s/{pattern}/new-content/{falgs}
         - multi-copy: use registers
@@ -62,11 +65,55 @@
         - diffget
         - diffput
 
+    - Comunicate with outside world
+        - :r !ps aux
+        - netrw
+
 5. Problems I've met:
     - Tab settings when copy from other process
-    - When you accidentally modified a read-only file but needs to save it  
+    - When you accidentally modified a read-only file but needs to save it
         :w !sudo tee %<CR>
-    - 
+    - keystroke conflicts with other tools like GNU screen or tmux
 
-5. It can be pretty COOL!
+6. IT CAN BE PRETTY COOL!
+    - Plugins intro:
+        - General plugin, filetype plugin, event driven, docoments...
+        - Plugin management:
+            - Tranditional: $HOME/.vim/plugin, $HOME/.vim/ftplugin, $HOME/.vim/doc
+            - pathogen: keep plugins seperated
+            - vundle: repo-based plugin management tool
+        - Where to find plugins:
+            - Official site: www.vim.org
+            - Github.com
+
+    - What we need for IDE:
+        - File browsing:
+            - nerdtree, bufexplorer
+        - Syntax highlight:
+            - vim-colors-solarized, vim-javascript-syntax, javascript-libraries-syntax.vim, vim-css-color
+        - Syntax check:
+            - syntastic, jshint2.vim, flake8, pep8
+        - Fuzzy search by file names or by different type:
+            - ctrlP
+        - Moving fast:
+            - vim-easymotion, ctags
+        - Coding fast:
+            - nerdcommenter, vim-surround, vim-repeat, auto-pairs
+        - Auto-complete:
+            - vim-snipmate, tern_for_vim, jedi-vim, emmet-vim, neocomplete, YouCompleteMe
+        - VCM integerated:
+            - fugitive
+        - Visual change history:
+            - gundo.vim
+
+    - Funny things
+        - rot13
+
+7. How to write a great software?
+    - Extension - plug-in and plug-out easily
+    - Configuration - Configure in the programming way
+    - Customization - Do not be too/blindly confident
+    - Enough handy documents - Do not make people confused
+    - Be open, do more sharing :)
+
 """
