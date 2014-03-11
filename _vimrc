@@ -77,6 +77,8 @@ set listchars+=tab:>-,trail:^,extends:>,precedes:<
 set pastetoggle=<F12>
 set completeopt=longest,menuone,preview
 
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
 scriptencoding utf-8
 set encoding=utf-8
 syntax enable
@@ -86,6 +88,7 @@ highlight clear LineNr
 if has('gui_running')
     set guioptions-=T
     set guioptions-=m
+    set langmenu=zh_CN.utf-8
 endif
 
 if has('cmdline_info')
@@ -341,6 +344,9 @@ Bundle "skammer/vim-css-color"
 Bundle "shizhz/auto-pairs"
 Bundle 'Shougo/neocomplete.vim'
 Bundle "Shougo/neosnippet.vim"
+"Gist
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
 
 
 " color
