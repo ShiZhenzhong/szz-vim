@@ -77,6 +77,8 @@ set listchars+=tab:>-,trail:^,extends:>,precedes:<
 set pastetoggle=<F12>
 set completeopt=longest,menuone,preview
 
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
 scriptencoding utf-8
 set encoding=utf-8
 syntax enable
@@ -86,6 +88,7 @@ highlight clear LineNr
 if has('gui_running')
     set guioptions-=T
     set guioptions-=m
+    set langmenu=zh_CN.utf-8
 endif
 
 if has('cmdline_info')
@@ -150,6 +153,9 @@ cmap <C-a> <HOME>
 "SuperTab
 "let g:SuperTabDefaultCompletionType = "context"
 
+"Session management
+let g:session_autosave='no'
+
 " jedi-vim
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
@@ -163,7 +169,7 @@ let g:jedi#popup_select_first = 0
 let g:use_jedi_for_javascript=0
 
 let g:tern_map_keys=1
-let g:tern_show_argument_hints='on_hold'
+let g:tern_show_argument_hints='no'
 
 let g:ctrlp_root_markers = ['.ctrlp'] " create a .ctrlp file at the root directory in big project. and remember add this file to .git_ignore
 let g:ctrlp_custom_ignore = {
@@ -194,42 +200,6 @@ let g:snips_github='https://github.com/shizhz'
 
 
 "}}}
-
-"Akey mappings {{{
-inoremap jk <esc>
-inoremap <C-s> <esc>:w<CR>
-"inoremap <C-e> <esc>$a
-"inoremap <C-a> <esc>^i
-nnoremap ; :
-inoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
-nnoremap <leader>ev <esc>:vsplit $MYVIMRC<CR>
-noremap Y y$
-nnoremap zl zL
-nnoremap zh zH
-nnoremap <S-space> <esc>mi:%s/\s\+$//g<CR>`i
-noremap <leader><space> :noh<CR>
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-h> <C-w>h
-noremap <C-l> <C-w>l
-noremap <A-j> <esc>:res -10<CR>
-noremap <A-k> <esc>:res +10<CR>
-noremap <A-h> <esc>:vertical res -10<CR>
-noremap <A-l> <esc>:vertical res +10<CR>
-noremap <leader>w <C-w>
-noremap <A-n> :bn<CR>
-noremap <A-p> :bp<CR>
-vnoremap > >gv
-vnoremap < <gv
-
-"Gundo
-nnoremap <F5> :GundoToggle<CR>
-let g:gundo_width = 50
-let g:gundo_preview_height = 40
-
-cmap cwd lcd %:p:h
-cmap <C-a> <HOME>
-
 
 let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key='<C-n>'
@@ -307,6 +277,7 @@ if has('autocmd')
     autocmd FileType css noremap <buffer> <leader><leader>f :call CSSBeautify()<cr>
     autocmd FileType javascript vnoremap <buffer>  <leader><leader>f :call RangeJsBeautify()<cr>
     autocmd FileType html vnoremap <buffer> <leader><leader>f :call RangeHtmlBeautify()<cr>
+    autocmd FileType html setlocal foldmethod=indent foldlevel=20
     autocmd FileType css vnoremap <buffer> <leader><leader>f :call RangeCSSBeautify()<cr>
 endif "}}}
 
@@ -350,6 +321,11 @@ Bundle 'Shougo/neocomplete.vim'
 Bundle "Shougo/neosnippet.vim"
 Bundle 'einars/js-beautify'
 Bundle 'maksimr/vim-jsbeautify'
+"Gist
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-session'
 
 
 " color
