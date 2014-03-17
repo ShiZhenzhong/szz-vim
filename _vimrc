@@ -301,6 +301,13 @@ if has('autocmd')
     au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
     au InsertLeave * match ExtraWhitespace /\s\+$/
     au InsertEnter * match ExtraWhitespace //
+
+    autocmd FileType javascript noremap <buffer>  <leader><Leader>f :call JsBeautify()<cr>
+    autocmd FileType html noremap <buffer> <leader><Leader>f :call HtmlBeautify()<cr>
+    autocmd FileType css noremap <buffer> <leader><leader>f :call CSSBeautify()<cr>
+    autocmd FileType javascript vnoremap <buffer>  <leader><leader>f :call RangeJsBeautify()<cr>
+    autocmd FileType html vnoremap <buffer> <leader><leader>f :call RangeHtmlBeautify()<cr>
+    autocmd FileType css vnoremap <buffer> <leader><leader>f :call RangeCSSBeautify()<cr>
 endif "}}}
 
 " Plugins {{{
@@ -341,6 +348,8 @@ Bundle "skammer/vim-css-color"
 Bundle "shizhz/auto-pairs"
 Bundle 'Shougo/neocomplete.vim'
 Bundle "Shougo/neosnippet.vim"
+Bundle 'einars/js-beautify'
+Bundle 'maksimr/vim-jsbeautify'
 
 
 " color
@@ -372,5 +381,6 @@ map <silent> <C-E> :NERDTreeToggle<CR>
 map \ <Plug>(easymotion-prefix)
 map \\s <Plug>(easymotion-s2)
 map \g <Plug>(easymotion-sn)
+
 
 imap <CR>   <C-R>=CustomizeCR()<CR>
