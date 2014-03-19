@@ -89,6 +89,7 @@ if has('gui_running')
     set guioptions-=T
     set guioptions-=m
     set langmenu=zh_CN.utf-8
+    set guifont=Courier_New:h12:cANSI
 endif
 
 if has('cmdline_info')
@@ -155,6 +156,7 @@ cmap <C-a> <HOME>
 
 "Session management
 let g:session_autosave='no'
+let g:session_autoload = 'no'
 
 " jedi-vim
 let g:jedi#completions_enabled = 0
@@ -354,9 +356,15 @@ noremap <silent> <leader>lb :BufExplorerVerticalSplit<CR>
 " neartree
 map <silent> <C-E> :NERDTreeToggle<CR>
 
+" easymotion
 map \ <Plug>(easymotion-prefix)
 map \\s <Plug>(easymotion-s2)
 map \g <Plug>(easymotion-sn)
 
+" session
+nnoremap <leader>ssl :ViewSession<CR>
+nnoremap <leader>ss :SaveSession<CR>
+nnoremap <leader>sc :CloseSession<CR>
+nnoremap <leader>so :OpenSession<CR>
 
 imap <CR>   <C-R>=CustomizeCR()<CR>
