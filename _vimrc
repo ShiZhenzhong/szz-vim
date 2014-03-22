@@ -349,7 +349,7 @@ set background=dark
 " CtrlP
 nnoremap <C-S-p> :CtrlP<CR>
 nnoremap <C-S-t> :CtrlPTag<CR>
-nnoremap <S-S-b> :CtrlPBuffer<CR>
+nnoremap <C-S-b> :CtrlPBuffer<CR>
 
 nnoremap <leader>tt :TagbarToggle<CR>
 
