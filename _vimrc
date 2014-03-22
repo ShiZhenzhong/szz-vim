@@ -16,6 +16,7 @@ if LINUX()
     if filereadable(expand("/usr/share/dict/words"))
         set dictionary = "/usr/share/dict/words"
     endif
+    set guifont=Monospace\ 12
 endif
 
 if WINDOWS()
@@ -25,6 +26,7 @@ if WINDOWS()
     if filereadable(expand("~/words"))
         set dictionary = "~/words"
     endif
+    set guifont=Courier_New:h12:cANSI
 endif
 "}}}
 
@@ -66,7 +68,7 @@ set smartcase
 
 "set wildignorecase
 set wildmode=longest,list,full
-set wildmenu 
+set wildmenu
 set whichwrap=b,s,h,l,<,>,[,]
 
 set scrolljump=5
@@ -75,7 +77,7 @@ set foldlevel=10
 
 set listchars+=tab:>-,trail:^,extends:>,precedes:<
 set pastetoggle=<F12>
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
 
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
@@ -89,7 +91,6 @@ if has('gui_running')
     set guioptions-=T
     set guioptions-=m
     set langmenu=zh_CN.utf-8
-    set guifont=Courier_New:h12:cANSI
 endif
 
 if has('cmdline_info')
@@ -102,7 +103,7 @@ if has('statusline')
     set laststatus=2   " make statusline always shown
 
     set statusline=%<%f\:                    " Filename
-    set statusline+=%-5.3n\                 " buffer number  
+    set statusline+=%-5.3n\                 " buffer number
     set statusline+=%w%h%m%r                 " Options
     set statusline+=%{fugitive#statusline()} " Git Hotness
     set statusline+=\ [%{&ff}/%Y]            " Filetype
@@ -159,16 +160,16 @@ let g:session_autosave='no'
 let g:session_autoload = 'no'
 
 " jedi-vim
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#popup_on_dot = 1
-let g:jedi#completions_command = "<C-N>"
-let g:jedi#goto_assignments_command = "<leader>jg"
-let g:jedi#goto_definitions_command = "<leader>jd"
-let g:jedi#rename_command = "<leader>jr"
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#popup_select_first = 0
-let g:use_jedi_for_javascript=0
+"let g:jedi#completions_enabled = 0
+"let g:jedi#auto_vim_configuration = 0
+"let g:jedi#popup_on_dot = 1
+"let g:jedi#completions_command = "<C-N>"
+"let g:jedi#goto_assignments_command = "<leader>jg"
+"let g:jedi#goto_definitions_command = "<leader>jd"
+"let g:jedi#rename_command = "<leader>jr"
+"let g:jedi#use_tabs_not_buffers = 0
+"let g:jedi#popup_select_first = 0
+"let g:use_jedi_for_javascript=0
 
 let g:tern_map_keys=1
 let g:tern_show_argument_hints='no'
@@ -205,7 +206,7 @@ let g:snips_github='https://github.com/shizhz'
 
 let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key='<C-n>'
-let g:user_emmet_mode='a'   
+let g:user_emmet_mode='a'
 let g:use_emmet_complete_tag = 1
 
 let g:EasyMotion_enter_jump_first = 1
@@ -218,9 +219,9 @@ let g:neocomplete#enable_camel_case = 1
 let g:neocomplete#disable_auto_complete = 0
 let g:neocomplete#enable_auto_delimiter = 1
 let g:neocomplete#enable_auto_select = 0
-let g:neocomplete#enable_refresh_always = 1
+let g:neocomplete#enable_refresh_always = 0
 let g:neocomplete#data_directory = "~/.vim/.cache/neocomplete"
-"let g:neocomplete#enable_insert_char_pre = 1
+let g:neocomplete#enable_insert_char_pre = 1
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
@@ -254,12 +255,12 @@ if has('autocmd')
     au FileType vim noremap <leader>so :so %<CR>
 
     au FileType python setlocal foldmethod=indent foldlevel=4
-    au FileType python setlocal omnifunc=jedi#completions
+    "au FileType python setlocal omnifunc=jedi#completions
 
     " Use jedi's trigger method
     "au FileType javascript inoremap <silent> <buffer> . .<C-R>=jedi#complete_string(1)<CR>
     "au FileType javascript inoremap <expr> <buffer> <C-n> jedi#complete_string(0)
-    au FileType javascript call ReadJediConfigForJS()
+    "au FileType javascript call ReadJediConfigForJS()
     au FileType javascript nnoremap <silent> <buffer> K <esc>:TernDoc<CR>
     " close any preview windows
     au FileType javascript nnoremap <silent> <buffer> <esc> <C-W>z
@@ -292,7 +293,7 @@ call vundle#rc()
 " Bundle 'tpope/vim-rails.git'
 " Bundle 'Valloric/YouCompleteMe'
 " Bundle 'ervandew/supertab'
-" Bundle 'majutsushi/tagbar'
+Bundle 'majutsushi/tagbar'
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-fugitive'
@@ -303,7 +304,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'Shutnik/jshint2.vim'
-Bundle 'davidhalter/jedi-vim'
+"Bundle 'davidhalter/jedi-vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'othree/javascript-libraries-syntax.vim'
@@ -328,6 +329,7 @@ Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
+Bundle "klen/python-mode"
 
 
 " color
@@ -345,9 +347,11 @@ endif
 set background=dark
 
 " CtrlP
-nnoremap <leader>r :CtrlP<CR>
-nnoremap <leader>t :CtrlPTag<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <C-S-p> :CtrlP<CR>
+nnoremap <C-S-t> :CtrlPTag<CR>
+nnoremap <S-S-b> :CtrlPBuffer<CR>
+
+nnoremap <leader>tt :TagbarToggle<CR>
 
 " Bufexplorer
 noremap <silent> <leader>ll :BufExplorer<CR>
