@@ -270,7 +270,7 @@ if has('autocmd')
     au FileType html,css EmmetInstall
 
     au InsertLeave <buffer> if pumvisible() == 0|pclose|endif
-    au BufEnter * silent! lcd %:p:h
+"    au BufEnter * silent! lcd %:p:h
     au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
     au InsertLeave * match ExtraWhitespace /\s\+$/
     au InsertEnter * match ExtraWhitespace //
