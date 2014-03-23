@@ -268,6 +268,7 @@ if has('autocmd')
 
     au FileType css imap <C-n> <C-x><C-o>
     au FileType html,css EmmetInstall
+    au BufRead,BufNewFile *.less set filetype=CSS
 
     au InsertLeave <buffer> if pumvisible() == 0|pclose|endif
 "    au BufEnter * silent! lcd %:p:h
@@ -330,6 +331,7 @@ Bundle 'mattn/gist-vim'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle "klen/python-mode"
+Bundle 'groenewege/vim-less'
 
 
 " color
