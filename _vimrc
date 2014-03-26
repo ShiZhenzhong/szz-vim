@@ -175,6 +175,8 @@ let g:tern_map_keys=1
 let g:tern_show_argument_hints='no'
 
 let g:ctrlp_root_markers = ['.ctrlp'] " create a .ctrlp file at the root directory in big project. and remember add this file to .git_ignore
+
+let g:ctrlp_cache_dir = $HOME.'/.vim/ctrlp'
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
 	\ 'file': '\v\.(exe|pyc|pdf|PDF|jar|chm|so|dll)$',
@@ -374,3 +376,4 @@ nnoremap <leader>sc :CloseSession<CR>
 nnoremap <leader>so :OpenSession<CR>
 
 imap <CR>   <C-R>=CustomizeCR()<CR>
+nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
