@@ -145,7 +145,7 @@ vnoremap > >gv
 vnoremap < <gv
 
 "Gundo
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <F6> :GundoToggle<CR>
 let g:gundo_width = 50
 let g:gundo_preview_height = 40
 
