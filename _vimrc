@@ -160,16 +160,16 @@ let g:session_autosave='no'
 let g:session_autoload = 'no'
 
 " jedi-vim
-"let g:jedi#completions_enabled = 0
-"let g:jedi#auto_vim_configuration = 0
-"let g:jedi#popup_on_dot = 1
-"let g:jedi#completions_command = "<C-N>"
-"let g:jedi#goto_assignments_command = "<leader>jg"
-"let g:jedi#goto_definitions_command = "<leader>jd"
-"let g:jedi#rename_command = "<leader>jr"
-"let g:jedi#use_tabs_not_buffers = 0
-"let g:jedi#popup_select_first = 0
-"let g:use_jedi_for_javascript=0
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 1
+let g:jedi#completions_command = "<C-N>"
+let g:jedi#goto_assignments_command = "<leader>jg"
+let g:jedi#goto_definitions_command = "<leader>jd"
+let g:jedi#rename_command = "<leader>jr"
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#popup_select_first = 0
+let g:use_jedi_for_javascript=0
 
 let g:tern_map_keys=1
 let g:tern_show_argument_hints='no'
@@ -257,7 +257,7 @@ if has('autocmd')
     au FileType vim noremap <leader>so :so %<CR>
 
     au FileType python setlocal foldmethod=indent foldlevel=4
-    "au FileType python setlocal omnifunc=jedi#completions
+    au FileType python setlocal omnifunc=jedi#completions
 
     " Use jedi's trigger method
     "au FileType javascript inoremap <silent> <buffer> . .<C-R>=jedi#complete_string(1)<CR>
@@ -307,7 +307,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'Shutnik/jshint2.vim'
-"Bundle 'davidhalter/jedi-vim'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'tell-k/vim-autopep8'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'othree/javascript-libraries-syntax.vim'
@@ -332,8 +333,9 @@ Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
-Bundle "klen/python-mode"
+" Bundle 'klen/python-mode'
 Bundle 'groenewege/vim-less'
+Bundle 'tpope/vim-unimpaired'
 
 
 " color
@@ -377,3 +379,9 @@ nnoremap <leader>so :OpenSession<CR>
 
 imap <CR>   <C-R>=CustomizeCR()<CR>
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+
+" Syntasic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_python_checkers = ['pylint','pep8']
+"autopep8
+let g:autopep8_max_line_length=79
