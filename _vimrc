@@ -31,10 +31,6 @@ endif
 "}}}
 
 " General Settings {{{
-set nocompatible              " be iMproved, required
-filetype on                  " required
-filetype indent on
-
 set visualbell
 set smarttab
 
@@ -292,55 +288,56 @@ endif "}}}
 
 " Plugins {{{
 filetype off                  " required
-filetype plugin indent on     " required
 set rtp+=$HOME/.vim/bundle/vundle
-call vundle#rc()
+call vundle#begin()
 
-" Bundle 'tpope/vim-rails.git'
-" Bundle 'Valloric/YouCompleteMe'
-" Bundle 'ervandew/supertab'
-Bundle 'majutsushi/tagbar'
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'kien/ctrlp.vim'
-Bundle 'jlanzarotta/bufexplorer'
-Bundle 'marijnh/tern_for_vim'
-Bundle 'Shutnik/jshint2.vim'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'tell-k/vim-autopep8'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'othree/javascript-libraries-syntax.vim'
+" Plugin 'tpope/vim-rails.git'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'ervandew/supertab'
+Plugin 'majutsushi/tagbar'
+Plugin 'gmarik/vundle'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'kien/ctrlp.vim'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'Shutnik/jshint2.vim'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'tell-k/vim-autopep8'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'othree/javascript-libraries-syntax.vim'
 " vim-snipmate
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-"Bundle "garbas/vim-snipmate"
-Bundle "sirver/ultisnips"
-Bundle "honza/vim-snippets"
+"Plugin "MarcWeber/vim-addon-mw-utils"
+"Plugin "tomtom/tlib_vim"
+"Plugin "garbas/vim-snipmate"
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
-Bundle "sjl/gundo.vim"
-Bundle "mattn/emmet-vim"
-Bundle "tpope/vim-surround"
-Bundle "tpope/vim-repeat"
-Bundle "skammer/vim-css-color"
-Bundle "shizhz/auto-pairs"
-Bundle 'Shougo/neocomplete.vim'
-Bundle "Shougo/neosnippet.vim"
-Bundle 'einars/js-beautify'
-Bundle 'maksimr/vim-jsbeautify'
+Plugin 'sjl/gundo.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'skammer/vim-css-color'
+Plugin 'shizhz/auto-pairs'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neosnippet.vim'
+Plugin 'einars/js-beautify'
+Plugin 'maksimr/vim-jsbeautify'
 "Gist
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-session'
-" Bundle 'klen/python-mode'
-Bundle 'groenewege/vim-less'
-Bundle 'tpope/vim-unimpaired'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+" Plugin 'klen/python-mode'
+Plugin 'groenewege/vim-less'
+Plugin 'tpope/vim-unimpaired'
 
+call vundle#end()
+filetype plugin indent on
 
 " color
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
@@ -382,11 +379,15 @@ nnoremap <leader>sc :CloseSession<CR>
 nnoremap <leader>so :OpenSession<CR>
 
 imap <CR>   <C-R>=CustomizeCR()<CR>
-nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
 " Syntasic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_checkers = ['pylint','pep8']
 "autopep8
 let g:autopep8_max_line_length=79
+
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
