@@ -198,9 +198,9 @@ let g:used_javascript_libs = 'underscore,backbone,jquery'
 let g:snips_author='shizhz'
 let g:snips_email='messi.shizz@gmail.com'
 let g:snips_github='https://github.com/shizhz'
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {}
-let g:snipMate.scope_aliases['html'] = 'html,javascript,css,jinja2'
+"let g:snipMate = {}
+"let g:snipMate.scope_aliases = {}
+"let g:snipMate.scope_aliases['html'] = 'html,javascript,css,jinja2'
 
 
 "}}}
@@ -335,7 +335,8 @@ Plugin 'xolox/vim-session'
 " Plugin 'klen/python-mode'
 Plugin 'groenewege/vim-less'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'Glench/Vim-Jinja2-Syntax'
+"Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'mitsuhiko/vim-jinja'
 
 call vundle#end()
 filetype plugin indent on
@@ -386,6 +387,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_checkers = ['pylint','pep8']
 "autopep8
 let g:autopep8_max_line_length=79
+let g:autopep8_disable_show_diff=1
 
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsExpandTrigger="<tab>"
