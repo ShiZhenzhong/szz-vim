@@ -335,7 +335,6 @@ Plugin 'xolox/vim-session'
 " Plugin 'klen/python-mode'
 Plugin 'groenewege/vim-less'
 Plugin 'tpope/vim-unimpaired'
-"Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'mitsuhiko/vim-jinja'
 
 call vundle#end()
