@@ -336,6 +336,7 @@ Plugin 'xolox/vim-session'
 Plugin 'groenewege/vim-less'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'mitsuhiko/vim-jinja'
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 filetype plugin indent on
@@ -381,6 +382,27 @@ nnoremap <leader>so :OpenSession<CR>
 
 imap <CR>   <C-R>=CustomizeCR()<CR>
 
+" golang
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 1
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>db <Plug>(go-doc-browser)
+
 " Syntasic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_checkers = ['pylint','pep8']
@@ -393,3 +415,4 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
+let g:neosnippet#disable_runtime_snippets = { "_": 1, }
